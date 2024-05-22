@@ -89,7 +89,7 @@ nav {
   display: flex;
   align-items: center;
   gap: 10px;
-  padding: 1rem;
+  padding: 1rem 2rem;
 }
 
 aside {
@@ -98,6 +98,7 @@ aside {
   height: 91vh;
   background-color: #F3f4f6;
   box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
+  padding-top: 2rem;
 }
 aside a {
   text-decoration: none;
