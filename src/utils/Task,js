@@ -1,0 +1,19 @@
+class Task {
+  constructor(id, title, description, status) {
+    this.id = id;
+    this.title = title;
+    this.description = description;
+    this.status = status;
+  }
+
+  updateStatus(newStatus) {
+    this.status = newStatus;
+  }
+
+  updateDetails(newTitle, newDescription) {
+    this.title = newTitle;
+    this.description = newDescription;
+  }
+}
+
+export default Task;

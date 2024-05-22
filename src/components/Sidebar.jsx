@@ -5,15 +5,15 @@ function Sidebar() {
   return (
     <aside>
       <a href="/">
-        <div className="sidebar-menu-item">
+        <div className="sidebar-menu-item  ">
           <img src={boardSvg} alt="board-icon" />
-          <p>My Board</p>
+          <p>Board</p>
         </div>
       </a>
       <a href="/about">
         <div className="sidebar-menu-item">
           <img src={aboutSvg} alt="about-icon" />
-          <p>About</p>
+          <p>Aboutasd</p>
         </div>
       </a>
     </aside>
