@@ -1,5 +1,11 @@
+import { Droppable } from "react-beautiful-dnd";
+
 const Column = () => {
-  return <div>Column</div>;
+  return (
+    <div>
+      <Droppable />
+    </div>
+  );
 };
 
 export default Column;
