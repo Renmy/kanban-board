@@ -1,4 +1,5 @@
-import boardSvg from "../assets/icons/board.svg";
+import boardSvg from "../assets/icons/board1.svg";
+import aboutSvg from "../assets/icons/about1.svg";
 
 function Sidebar() {
   return (
@@ -10,9 +11,9 @@ function Sidebar() {
         </div>
       </a>
       <a href="/about">
-        <div>
-          <img />
-          <p>Board</p>
+        <div className="sidebar-menu-item">
+          <img src={aboutSvg} alt="about-icon" />
+          <p>About</p>
         </div>
       </a>
     </aside>
