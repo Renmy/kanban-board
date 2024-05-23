@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
 
-function AddTaskForm({ setShowModal }) {
+function AddTaskForm({ setShowModal, onFormDataChange }) {
   const [formData, setFormData] = React.useState({
     title: "",
     description: "",
@@ -9,6 +9,10 @@ function AddTaskForm({ setShowModal }) {
     priority: "Low",
     date: "",
   });
+
+  useEffect(() => {
+    onFormDataChange(formData);
+  }, [formData, onFormDataChange]);
 
   const [formWarningMessage, setFormWarningMessage] = React.useState(false);
 
@@ -41,6 +45,8 @@ function AddTaskForm({ setShowModal }) {
       setFormWarningMessage(true);
     } else {
       setFormWarningMessage(false);
+      setShowModal(false);
+      console.log(formData);
     }
   };
 
@@ -242,6 +248,7 @@ function AddTaskForm({ setShowModal }) {
           </div>
         </div>
       </div>
+      {/* Makes background darker */}
       <div className="opacity-25 fixed inset-0 z-40 bg-black"></div>
     </>
   );

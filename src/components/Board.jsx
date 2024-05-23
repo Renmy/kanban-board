@@ -9,6 +9,20 @@ import React from "react";
 import AddTaskForm from "./AddTaskForm";
 
 const Board = ({ tasks }) => {
+  const [formData, setFormData] = React.useState({
+    title: "",
+    description: "",
+    asignee: "",
+    status: "To Do",
+    priority: "Low",
+    date: "",
+  });
+  console.log(formData);
+
+  const handleFormChange = (newFormData) => {
+    setFormData(newFormData);
+  };
+
   const [todo, setTodo] = useState(filterTasks(tasks, "To Do"));
   const [inProgress, setInProgress] = useState(
     filterTasks(tasks, "In Progress")
@@ -36,7 +50,12 @@ const Board = ({ tasks }) => {
       </div>
 
       {/* Modal to Create a New Task */}
-      {showModal ? <AddTaskForm setShowModal={setShowModal} /> : null}
+      {showModal ? (
+        <AddTaskForm
+          setShowModal={setShowModal}
+          onFormDataChange={handleFormChange}
+        />
+      ) : null}
 
       <div className="flex justify-between gap-8 py-5">
         <Column title="To Do" tasks={todo} />
