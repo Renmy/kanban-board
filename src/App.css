@@ -171,3 +171,20 @@ footer .footer-icon {
   opacity: 1.0;
   cursor: pointer;
 }
+
+.todo {
+  background-color: rgba(0, 139, 163, 0.7);
+}
+
+.inprogress {
+  background-color: rgba(255, 85, 49, 0.7);
+}
+
+.inreview {
+  background-color:rgba(173, 125, 27, 0.7)
+}
+
+.done {
+  background-color:rgba(63, 177, 130, 0.7)
+
+}
