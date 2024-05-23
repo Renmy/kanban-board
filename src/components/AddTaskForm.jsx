@@ -1,12 +1,12 @@
 import React from "react";
 
-function AddTaskForm({ setShowModal }) {
+function AddTaskForm({ closeModal, task }) {
   const [formData, setFormData] = React.useState({
-    title: "",
-    description: "",
-    asignee: "",
-    status: "To Do",
-    priority: "Low",
+    title: task?.title ?? "",
+    description: task?.description ?? "",
+    asignee: task?.asignee ?? "",
+    status: task?.status ?? "To Do",
+    priority: task?.priority ?? "Low",
     date: "",
   });
 
@@ -57,7 +57,7 @@ function AddTaskForm({ setShowModal }) {
               </h3>
               <button
                 className="p-1 ml-auto bg-transparent border-0 text-black float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
-                onClick={() => setShowModal(false)}
+                onClick={() => closeModal(false)}
               >
                 <span className="bg-transparent text-red-500  h-6 w-6 text-2xl block outline-none focus:outline-none hover:scale-125">
                   ×
@@ -225,9 +225,9 @@ function AddTaskForm({ setShowModal }) {
             {/*footer*/}
             <div className="flex items-center justify-end p-6 border-t border-solid border-blueGray-200 rounded-b">
               <button
-                className="text-slate-600 bg-gray-300 hover:bg-gray-400 font-bold uppercase px-6 py-3 text-sm outline-none rounded focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150 mr-2"
+                className="text-slate-600 bg-gray-300 hover:bg-gray-400 font-bold uppercase px-6 py-3 text-sm outline-none rounded focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150 "
                 type="button"
-                onClick={() => setShowModal(false)}
+                onClick={() => closeModal(false)}
               >
                 Cancel
               </button>

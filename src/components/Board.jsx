@@ -1,14 +1,24 @@
 import { useState } from "react";
 import Column from "./Column";
 import Task from "./Task";
+import React from "react";
+import AddTaskForm from "./AddTaskForm";
+import tasks from "../utils/kanban.json";
 
 const filterTasks = (tasks, column) => {
   return tasks.filter((task) => task.status === column);
 };
-import React from "react";
-import AddTaskForm from "./AddTaskForm";
 
-const Board = ({ tasks }) => {
+const emptyTask = {
+  title: "",
+  description: "",
+  asignee: "",
+  status: "To Do",
+  priority: "Low",
+  date: "",
+};
+
+const Board = () => {
   const [todo, setTodo] = useState(filterTasks(tasks, "To Do"));
   const [inProgress, setInProgress] = useState(
     filterTasks(tasks, "In Progress")
@@ -18,6 +28,13 @@ const Board = ({ tasks }) => {
 
   const [showModal, setShowModal] = React.useState(false);
 
+  const [currentTask, setCurrentTask] = useState(emptyTask);
+
+  const showTaskDetails = (task) => {
+    setCurrentTask(task);
+    setShowModal(true);
+  };
+
   return (
     <div className="flex flex-col p-5 w-full">
       <div className="flex items-center justify-between border-b-4 py-2">
@@ -26,7 +43,7 @@ const Board = ({ tasks }) => {
         </h1>
         <div>
           <button
-            onClick={() => setShowModal(true)}
+            onClick={() => showTaskDetails(emptyTask)}
             htmlFor="tw-modal"
             className="cursor-pointer rounded bg-[#775DA6] text-white px-4 py-2 active:bg-slate-400 hover:bg-[#544274] ease-in duration-100 hover:scale-105"
           >
@@ -36,13 +53,23 @@ const Board = ({ tasks }) => {
       </div>
 
       {/* Modal to Create a New Task */}
-      {showModal ? <AddTaskForm setShowModal={setShowModal} /> : null}
+      {showModal ? (
+        <AddTaskForm closeModal={setShowModal} task={currentTask} />
+      ) : null}
 
       <div className="flex justify-between gap-8 py-5">
-        <Column title="To Do" tasks={todo} />
-        <Column title="In Progress" tasks={inProgress} />
-        <Column title="In Review" tasks={inReview} />
-        <Column title="Done" tasks={done} />
+        <Column title="To Do" tasks={todo} showTaskDetails={showTaskDetails} />
+        <Column
+          title="In Progress"
+          tasks={inProgress}
+          showTaskDetails={showTaskDetails}
+        />
+        <Column
+          title="In Review"
+          tasks={inReview}
+          showTaskDetails={showTaskDetails}
+        />
+        <Column title="Done" tasks={done} showTaskDetails={showTaskDetails} />
       </div>
     </div>
   );

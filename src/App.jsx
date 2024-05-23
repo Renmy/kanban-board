@@ -1,5 +1,4 @@
 import "./App.css";
-import tasks from "./utils/kanban.json";
 import Navbar from "./components/Navbar";
 import Sidebar from "./components/Sidebar";
 import Footer from "./components/Footer";
