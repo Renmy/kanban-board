@@ -21,7 +21,7 @@ const Board = ({ tasks }) => {
   return (
     <div className="flex flex-col p-5 w-full">
       <div className="flex items-center justify-between border-b-4 py-2">
-        <h1 className="p-5 text-2xl border-b-4 border-b-slate-500 pb-7 font-semibold text-slate-700 ">
+        <h1 className="py-5 text-2xl pb-7 font-semibold text-slate-700 ">
           Project Board
         </h1>
         <div>
@@ -38,7 +38,7 @@ const Board = ({ tasks }) => {
       {/* Modal to Create a New Task */}
       {showModal ? <AddTaskForm setShowModal={setShowModal} /> : null}
 
-      <div className="flex justify-evenly gap-8 p-5">
+      <div className="flex justify-between gap-8 py-5">
         <Column title="To Do" tasks={todo} />
         <Column title="In Progress" tasks={inProgress} />
         <Column title="In Review" tasks={inReview} />
