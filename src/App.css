@@ -2,63 +2,76 @@
 @tailwind components;
 @tailwind utilities;
 
-*, *::before, *::after{
-  box-sizing: border-box; 
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
-*{
-  margin: 0; 
-  padding: 0; 
+* {
+  margin: 0;
+  padding: 0;
 }
 
-ul[role='list'], ol[role='list']{
-  list-style: none; 
+ul[role="list"],
+ol[role="list"] {
+  list-style: none;
 }
 
-html:focus-within{
-  scroll-behavior: smooth; 
+html:focus-within {
+  scroll-behavior: smooth;
 }
 
-a:not([class]){
-  text-decoration-skip-ink: auto; 
+a:not([class]) {
+  text-decoration-skip-ink: auto;
 }
 
-img, picture, svg, video, canvas{
+img,
+picture,
+svg,
+video,
+canvas {
   max-width: 100%;
-  height: auto; 
-  vertical-align: middle; 
-  font-style: italic; 
-  background-repeat: no-repeat; 
+  height: auto;
+  vertical-align: middle;
+  font-style: italic;
+  background-repeat: no-repeat;
   background-size: cover;
 }
 
-input, button, textarea, select{
-  font: inherit; 
+input,
+button,
+textarea,
+select {
+  font: inherit;
 }
 
-@media (prefers-reduced-motion: reduce){
+@media (prefers-reduced-motion: reduce) {
   html:focus-within {
-      scroll-behavior: auto;
+    scroll-behavior: auto;
   }
-  *, *::before, *::after {
-      animation-duration: 0.01ms !important;
-      animation-iteration-count: 1 !important;
-      transition-duration: 0.01ms !important;
-      scroll-behavior: auto !important;
-      transition: none;
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+    transition: none;
   }
 }
 
-body, html{
+body,
+html {
   font-family: "Open Sans", sans-serif;
-  height: 100%; 
-  scroll-behavior: smooth; 
+  height: 100%;
+  scroll-behavior: smooth;
 }
 
 footer {
   padding: 2em 0;
   /* border-top: 1px solid #cdd0d8; */
-  box-shadow: 6px 2px 4px 0 rgba(0,0,0,.8);
+  box-shadow: 6px 2px 4px 0 rgba(0, 0, 0, 0.8);
 }
 
 .footer-names {
@@ -76,7 +89,7 @@ footer .footer-icon {
 }
 
 .footer-icon:hover {
-  opacity: 1.0;
+  opacity: 1;
   cursor: pointer;
 }
 
@@ -89,10 +102,9 @@ footer .footer-icon {
 }
 
 .inreview {
-  background-color:rgba(173, 125, 27, 0.7)
+  background-color: rgba(173, 125, 27, 0.7);
 }
 
 .done {
-  background-color:rgba(63, 177, 130, 0.7)
-
+  background-color: rgba(63, 177, 130, 0.7);
 }

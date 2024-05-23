@@ -3,7 +3,7 @@ import Task from "./Task";
 
 const Column = ({ title, tasks }) => {
   return (
-    <div className={`w-[25%]  px-3 `}>
+    <div className={`w-[25%]  px-0 `}>
       <div
         className={`${title
           .replace(/\s+/g, "")
