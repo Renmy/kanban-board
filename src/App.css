@@ -127,7 +127,7 @@ main {
 
 .board-title{
   padding: 1rem;
-  border-bottom: solid 2px #F3f4f6;  
+  /* border-bottom: solid 2px #F3f4f6;   */
 }
 
 .board-container {
