@@ -1,20 +1,22 @@
 import "./App.css";
-//import { Sidebar, Menu, MenuItem, SubMenu } from "react-pro-sidebar";
 import tasks from "./utils/kanban.json";
-
 import Navbar from "./components/Navbar";
 import Sidebar from "./components/Sidebar";
-import Task from "./components/Task";
-import Board from "./components/Board";
 import Footer from "./components/Footer";
+import { Route, Routes } from "react-router-dom";
+import BoardPage from "./pages/BoardPage";
+import AboutPage from "./pages/AboutPage";
 
 function App() {
   return (
     <>
       <Navbar />
-      <main>
+      <main className="flex">
         <Sidebar />
-        <Board tasks={tasks} />
+        <Routes>
+          <Route path="/" element={<BoardPage />} />
+          <Route path="/about" element={<AboutPage />} />
+        </Routes>
       </main>
       <Footer />
     </>
