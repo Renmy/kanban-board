@@ -13,7 +13,7 @@ function Sidebar() {
       <a href="/about">
         <div className="sidebar-menu-item">
           <img src={aboutSvg} alt="about-icon" />
-          <p>Aboutasd</p>
+          <p>About</p>
         </div>
       </a>
     </aside>

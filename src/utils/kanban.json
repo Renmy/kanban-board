@@ -48,5 +48,25 @@
       "priority": "Low",
       "createdDate": "2023-09-19",
       "dueDate": "2023-09-30"
+    },
+    {
+      "id": "6",
+      "title": "Update Documentation Reviews",
+      "description": "Update user documentation with the latest features and changes.",
+      "assignee": "Alejandro Cartagenas",
+      "status": "In Review",
+      "priority": "Low",
+      "createdDate": "2023-09-19",
+      "dueDate": "2023-09-30"
+    },
+    {
+      "id": "7",
+      "title": "Documentation Reviews 1",
+      "description": "Update user documentation with the latest features and changes.",
+      "assignee": "Renmy Enriquez",
+      "status": "In Review",
+      "priority": "Low",
+      "createdDate": "2023-09-19",
+      "dueDate": "2023-09-30"
     }
   ]
