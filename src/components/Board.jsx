@@ -67,12 +67,10 @@ const Board = () => {
       const previousTaskId = taskToEdit.id;
       const previousTaskStatus = taskToEdit.status;
 
-      taskToEdit.title = formData.title;
-      taskToEdit.description = formData.description;
-      taskToEdit.assignee = formData.assignee;
-      taskToEdit.status = formData.status;
-      taskToEdit.priority = formData.priority;
-      taskToEdit.dueDate = formData.dueDate;
+      Object.assign(taskToEdit, {
+        ...taskToEdit,
+        ...formData,
+      });
 
       // If task is moved to a different column
       if (previousTaskStatus !== taskToEdit.status) {
