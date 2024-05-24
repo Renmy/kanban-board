@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import Column from "./Column";
 import Task from "./Task";
 import React from "react";
-import AddTaskForm from "./AddTaskForm";
+import ManageTaskForm from "./ManageTaskForm";
 import tasksData from "../utils/kanban.json";
 
 const emptyTask = {
@@ -78,7 +78,7 @@ const Board = () => {
 
       {/* Modal to Create a New Task */}
       {showModal && (
-        <AddTaskForm
+        <ManageTaskForm
           closeModal={setShowModal}
           task={currentTask}
           handleTask={handleTask}
