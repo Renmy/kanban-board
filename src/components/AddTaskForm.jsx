@@ -17,7 +17,7 @@ function AddTaskForm({
     status: task?.status ?? "To Do",
     priority: task?.priority ?? "Low",
     createdDate: task?.createdDate ?? currentDate,
-    dueDate: "",
+    dueDate: task?.dueDate ?? "",
   });
 
   useEffect(() => {

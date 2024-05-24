@@ -30,6 +30,7 @@ const Board = () => {
 
   const [currentTask, setCurrentTask] = useState(emptyTask);
 
+  // For when the user clicks on an existing task
   const showTaskDetails = (task) => {
     setIsFormSubmitted(false);
     setCurrentTask(task);
@@ -63,6 +64,7 @@ const Board = () => {
     } else if (isFormSubmitted && currentTask.id) {
       const taskToEdit = tasks.find((item) => item.id === currentTask.id);
 
+      const previousTaskId = taskToEdit.id;
       const previousTaskStatus = taskToEdit.status;
 
       taskToEdit.title = formData.title;
@@ -72,10 +74,14 @@ const Board = () => {
       taskToEdit.priority = formData.priority;
       taskToEdit.dueDate = formData.dueDate;
 
+      // If task is moved to a different column
+      if (previousTaskStatus !== taskToEdit.status) {
+        removeTaskFromColumn(previousTaskId, previousTaskStatus);
+      }
+
       updateTask(formData.status);
     }
   }, [isFormSubmitted]);
-  console.log(tasks);
 
   const updateTask = (status) => {
     switch (status) {
@@ -94,24 +100,30 @@ const Board = () => {
     }
   };
 
-  console.log(todo);
-
-  // const removeTaskFromColumn = (taskId) => {
-  //   switch (status) {
-  //     case "To Do":
-  //       setTodo(filterTasks(tasks, "To Do"));
-  //       break;
-  //     case "In Progress":
-  //       setInProgress(filterTasks(tasks, "In Progress"));
-  //       break;
-  //     case "In Review":
-  //       setInReview(filterTasks(tasks, "In Review"));
-  //       break;
-  //     case "Done":
-  //       setDone(filterTasks(tasks, "Done"));
-  //       break;
-  //   }
-  // };
+  const removeTaskFromColumn = (taskId, taskStatus) => {
+    switch (taskStatus) {
+      case "To Do":
+        setTodo((prevTodo) => {
+          return prevTodo.filter((task) => task.id !== taskId);
+        });
+        break;
+      case "In Progress":
+        setInProgress((prevTodo) => {
+          return prevTodo.filter((task) => task.id !== taskId);
+        });
+        break;
+      case "In Review":
+        setInReview((prevTodo) => {
+          return prevTodo.filter((task) => task.id !== taskId);
+        });
+        break;
+      case "Done":
+        setDone((prevTodo) => {
+          return prevTodo.filter((task) => task.id !== taskId);
+        });
+        break;
+    }
+  };
 
   return (
     <div className="flex flex-col p-5 w-full">
