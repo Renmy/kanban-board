@@ -19,10 +19,10 @@ const priorityColors = (str) => {
 
 const Task = ({ id, title, assignee, dueDate, priority }) => {
   return (
-    <div className="flex justify-center  text-slate-700 bg-slate-100 p-3 rounded-lg shadow-lg">
+    <div className="flex justify-center  text-slate-700 bg-slate-100 p-3 rounded-lg shadow-lg hover:shadow-none hover:translate-y-0.5 transition-all">
       <div className="flex flex-col w-3/4 gap-1">
-        <h3 className="text-sm">{title}</h3>
-        <span className="text-xs">Due to: {dueDate}</span>
+        <h3 className="text-sm font-semibold">{title}</h3>
+        <span className="text-xs">Due date: {dueDate}</span>
         <span
           className={`text-xs text-white p-1 ${priorityColors(
             priority
