@@ -7,7 +7,7 @@ const Column = ({ title, tasks, showTaskDetails }) => {
       <div
         className={`${title
           .replace(/\s+/g, "")
-          .toLowerCase()} px-5 py-3 rounded-lg`}
+          .toLowerCase()} px-5 py-3 rounded-lg font-semibold`}
       >
         <h1 className="text-2xl text-white  text-center">{title}</h1>
         <h3 className="text-xs text-slate-100 text-center w-full">
@@ -19,9 +19,12 @@ const Column = ({ title, tasks, showTaskDetails }) => {
           <h3>There is no tasks {title}</h3>
         ) : (
           tasks.map((task) => (
-            <a href="#" onClick={() => showTaskDetails(task)}>
+            <a
+              className="cursor-pointer"
+              onClick={() => showTaskDetails(task)}
+              key={task.id}
+            >
               <Task
-                key={task.id}
                 id={task.id}
                 title={task.title}
                 assignee={task.assignee}

@@ -1,16 +1,7 @@
-import React from "react";
+import { useState } from "react";
 
-function AddTaskForm({ closeModal, task }) {
-  const [formData, setFormData] = React.useState({
-    title: task?.title ?? "",
-    description: task?.description ?? "",
-    asignee: task?.asignee ?? "",
-    status: task?.status ?? "To Do",
-    priority: task?.priority ?? "Low",
-    date: "",
-  });
-
-  const [formWarningMessage, setFormWarningMessage] = React.useState(false);
+function AddTaskForm({ closeModal, task, handleTask }) {
+  const [formData, setFormData] = useState({ ...task });
 
   // Captures the current date
   const datePickerId = new Date().toISOString().split("T")[0];
@@ -35,25 +26,22 @@ function AddTaskForm({ closeModal, task }) {
     return true;
   };
 
-  const handleSubmit = () => {
-    const formFilled = isFormFilled();
-    if (!formFilled) {
-      setFormWarningMessage(true);
-    } else {
-      setFormWarningMessage(false);
-    }
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    handleTask(formData);
+    closeModal(false);
   };
 
   return (
     <>
       <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
-        <div className="relative w-auto my-6 mx-auto max-w-3xl">
+        <div className="relative w-auto my-6 mx-auto max-w-3xl ">
           {/*content*/}
           <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
             {/*header*/}
             <div className="flex items-start justify-between p-5 border-b border-solid border-blueGray-200 rounded-t">
               <h3 className="text-3xl text-gray-700 font-semibold">
-                Create a new task
+                {formData.id ? "Edit" : "Create a new"} task
               </h3>
               <button
                 className="p-1 ml-auto bg-transparent border-0 text-black float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
@@ -67,7 +55,7 @@ function AddTaskForm({ closeModal, task }) {
 
             {/*body*/}
             <div className="relative p-6 flex-auto">
-              <form className="w-full max-w-lg">
+              <form className="w-full max-w-lg" onSubmit={handleSubmit}>
                 {/* Title */}
                 <div className="flex flex-wrap -mx-3 mb-6">
                   <div className="w-full px-3">
@@ -84,7 +72,7 @@ function AddTaskForm({ closeModal, task }) {
                       id="title"
                       name="title"
                       type="text"
-                      placeholder=""
+                      placeholder="Task Title"
                     />
                   </div>
                 </div>
@@ -110,21 +98,21 @@ function AddTaskForm({ closeModal, task }) {
                   </div>
                 </div>
 
-                {/* Asignee and Status */}
+                {/* assignee and Status */}
                 <div className="flex flex-wrap -mx-3 mb-6">
                   <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                     <label
                       className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                      htmlFor="asignee"
+                      htmlFor="assignee"
                     >
-                      Asignee
+                      Assignee
                     </label>
                     <input
                       onChange={handleFormChange}
-                      value={formData.asignee}
+                      value={formData.assignee}
                       className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                      id="asignee"
-                      name="asignee"
+                      id="assignee"
+                      name="assignee"
                       type="text"
                       placeholder="Name"
                     />
@@ -204,41 +192,44 @@ function AddTaskForm({ closeModal, task }) {
                     </label>
                     <input
                       onChange={handleFormChange}
-                      value={formData.date}
+                      value={formData.dueDate}
                       className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                       id="date"
-                      name="date"
+                      name="dueDate"
                       type="date"
                       placeholder=""
-                      min={datePickerId}
+                      min={!formData.id && datePickerId}
                     />
                   </div>
                 </div>
-                {formWarningMessage && (
+                {/* {formWarningMessage && (
                   <p className="text-red-400 text-center">
                     Please fill in all input fields
                   </p>
-                )}
+                )} */}
+                <div className="flex items-center justify-end p-6 border-t border-solid border-blueGray-200 rounded-b">
+                  <button
+                    className="text-slate-600 bg-gray-300 hover:bg-gray-400 font-bold uppercase px-6 py-3 text-sm outline-none rounded focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150 "
+                    type="button"
+                    onClick={() => closeModal(false)}
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    className="bg-[#775DA6] hover:bg-[#544274] text-white font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150 disabled:cursor-not-allowed disabled:hover:bg-[#775DA6]"
+                    type="submit"
+                    disabled={
+                      !isFormFilled() ||
+                      JSON.stringify(formData) === JSON.stringify(task)
+                    }
+                  >
+                    {formData.id ? "Save" : "Create"}
+                  </button>
+                </div>
               </form>
             </div>
 
             {/*footer*/}
-            <div className="flex items-center justify-end p-6 border-t border-solid border-blueGray-200 rounded-b">
-              <button
-                className="text-slate-600 bg-gray-300 hover:bg-gray-400 font-bold uppercase px-6 py-3 text-sm outline-none rounded focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150 "
-                type="button"
-                onClick={() => closeModal(false)}
-              >
-                Cancel
-              </button>
-              <button
-                className="bg-[#775DA6] hover:bg-[#544274] text-white font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                type="button"
-                onClick={handleSubmit}
-              >
-                Create
-              </button>
-            </div>
           </div>
         </div>
       </div>
