@@ -62,15 +62,20 @@ const Board = () => {
       updateTask(formData.status);
     } else if (isFormSubmitted && currentTask.id) {
       const taskToEdit = tasks.find((item) => item.id === currentTask.id);
+
+      const previousTaskStatus = taskToEdit.status;
+
       taskToEdit.title = formData.title;
       taskToEdit.description = formData.description;
       taskToEdit.assignee = formData.assignee;
       taskToEdit.status = formData.status;
       taskToEdit.priority = formData.priority;
       taskToEdit.dueDate = formData.dueDate;
+
       updateTask(formData.status);
     }
   }, [isFormSubmitted]);
+  console.log(tasks);
 
   const updateTask = (status) => {
     switch (status) {
@@ -81,13 +86,32 @@ const Board = () => {
         setInProgress(filterTasks(tasks, "In Progress"));
         break;
       case "In Review":
-        setInReview(filterTasks(tasks, "In review"));
+        setInReview(filterTasks(tasks, "In Review"));
         break;
       case "Done":
         setDone(filterTasks(tasks, "Done"));
         break;
     }
   };
+
+  console.log(todo);
+
+  // const removeTaskFromColumn = (taskId) => {
+  //   switch (status) {
+  //     case "To Do":
+  //       setTodo(filterTasks(tasks, "To Do"));
+  //       break;
+  //     case "In Progress":
+  //       setInProgress(filterTasks(tasks, "In Progress"));
+  //       break;
+  //     case "In Review":
+  //       setInReview(filterTasks(tasks, "In Review"));
+  //       break;
+  //     case "Done":
+  //       setDone(filterTasks(tasks, "Done"));
+  //       break;
+  //   }
+  // };
 
   return (
     <div className="flex flex-col p-5 w-full">
