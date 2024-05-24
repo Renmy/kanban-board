@@ -149,6 +149,7 @@ const Board = () => {
           task={currentTask}
           setIsFormSubmitted={setIsFormSubmitted}
           onFormDataChange={handleFormChange}
+          editTask={currentTask}
         />
       ) : null}
 
