@@ -1,7 +1,7 @@
 import { Droppable } from "react-beautiful-dnd";
 import Task from "./Task";
 
-const Column = ({ title, tasks }) => {
+const Column = ({ title, tasks, showTaskDetails }) => {
   return (
     <div className={`w-[25%]  px-0 `}>
       <div
@@ -19,14 +19,16 @@ const Column = ({ title, tasks }) => {
           <h3>There is no tasks {title}</h3>
         ) : (
           tasks.map((task) => (
-            <Task
-              key={task.id}
-              id={task.id}
-              title={task.title}
-              assignee={task.assignee}
-              dueDate={task.dueDate}
-              priority={task.priority}
-            />
+            <a href="#" onClick={() => showTaskDetails(task)}>
+              <Task
+                key={task.id}
+                id={task.id}
+                title={task.title}
+                assignee={task.assignee}
+                dueDate={task.dueDate}
+                priority={task.priority}
+              />
+            </a>
           ))
         )}
       </div>
