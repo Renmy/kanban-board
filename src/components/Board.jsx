@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Column from "./Column";
 import Task from "./Task";
 import React from "react";
@@ -8,6 +9,7 @@ import tasksData from "../utils/kanban.json";
 const emptyTask = {
   title: "",
   description: "",
+  assignee: "",
   assignee: "",
   status: "To Do",
   priority: "Low",
@@ -28,11 +30,13 @@ const Board = () => {
   const [inReview, setInReview] = useState(filterTasks(tasks, "In Review"));
   const [done, setDone] = useState(filterTasks(tasks, "Done"));
 
-  const [showModal, setShowModal] = React.useState(false);
+  const [showModal, setShowModal] = useState(false);
 
   const [currentTask, setCurrentTask] = useState(emptyTask);
 
+  // For when the user clicks on an existing task
   const showTaskDetails = (task) => {
+    setIsFormSubmitted(false);
     setCurrentTask(task);
     setShowModal(true);
   };
