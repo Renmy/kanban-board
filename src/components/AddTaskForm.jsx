@@ -1,19 +1,30 @@
 import React from "react";
+import { useState, useEffect } from "react";
 
-function AddTaskForm({ closeModal, task }) {
-  const [formData, setFormData] = React.useState({
+function AddTaskForm({
+  closeModal,
+  task,
+  setIsFormSubmitted,
+  onFormDataChange,
+}) {
+  // Captures the current date
+  const currentDate = new Date().toISOString().split("T")[0];
+
+  const [formData, setFormData] = useState({
     title: task?.title ?? "",
     description: task?.description ?? "",
-    asignee: task?.asignee ?? "",
+    assignee: task?.assignee ?? "",
     status: task?.status ?? "To Do",
     priority: task?.priority ?? "Low",
-    date: "",
+    createdDate: task?.createdDate ?? currentDate,
+    dueDate: "",
   });
 
-  const [formWarningMessage, setFormWarningMessage] = React.useState(false);
+  useEffect(() => {
+    onFormDataChange(formData);
+  }, [formData, onFormDataChange]);
 
-  // Captures the current date
-  const datePickerId = new Date().toISOString().split("T")[0];
+  const [formWarningMessage, setFormWarningMessage] = React.useState(false);
 
   // Changes the state of the form everytime there is a change
   const handleFormChange = (event) => {
@@ -41,7 +52,14 @@ function AddTaskForm({ closeModal, task }) {
       setFormWarningMessage(true);
     } else {
       setFormWarningMessage(false);
+      setIsFormSubmitted(true);
+      closeModal(false);
     }
+  };
+
+  const convertDateFormat = (dateString) => {
+    const [year, month, day] = dateString.split("-");
+    return `${month}/${day}/${year}`;
   };
 
   return (
@@ -110,21 +128,21 @@ function AddTaskForm({ closeModal, task }) {
                   </div>
                 </div>
 
-                {/* Asignee and Status */}
+                {/* Assignee and Status */}
                 <div className="flex flex-wrap -mx-3 mb-6">
                   <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                     <label
                       className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                      htmlFor="asignee"
+                      htmlFor="assignee"
                     >
-                      Asignee
+                      Assignee
                     </label>
                     <input
                       onChange={handleFormChange}
-                      value={formData.asignee}
+                      value={formData.assignee}
                       className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                      id="asignee"
-                      name="asignee"
+                      id="assignee"
+                      name="assignee"
                       type="text"
                       placeholder="Name"
                     />
@@ -204,13 +222,13 @@ function AddTaskForm({ closeModal, task }) {
                     </label>
                     <input
                       onChange={handleFormChange}
-                      value={formData.date}
+                      value={formData.dueDate}
                       className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                      id="date"
-                      name="date"
+                      id="dueDate"
+                      name="dueDate"
                       type="date"
                       placeholder=""
-                      min={datePickerId}
+                      // min={currentDate}
                     />
                   </div>
                 </div>

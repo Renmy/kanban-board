@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Column from "./Column";
 import Task from "./Task";
 import React from "react";
@@ -12,7 +12,7 @@ const filterTasks = (tasks, column) => {
 const emptyTask = {
   title: "",
   description: "",
-  asignee: "",
+  assignee: "",
   status: "To Do",
   priority: "Low",
   date: "",
@@ -26,13 +26,67 @@ const Board = () => {
   const [inReview, setInReview] = useState(filterTasks(tasks, "In Review"));
   const [done, setDone] = useState(filterTasks(tasks, "Done"));
 
-  const [showModal, setShowModal] = React.useState(false);
+  const [showModal, setShowModal] = useState(false);
 
   const [currentTask, setCurrentTask] = useState(emptyTask);
 
   const showTaskDetails = (task) => {
+    setIsFormSubmitted(false);
     setCurrentTask(task);
     setShowModal(true);
+  };
+
+  // For form data
+  const [formData, setFormData] = useState({
+    title: "",
+    description: "",
+    assignee: "",
+    status: "To Do",
+    priority: "Low",
+    createdDate: "",
+    dueDate: "",
+  });
+
+  // This is used to only append data if user successfully hit Create or Save button
+  const [isFormSubmitted, setIsFormSubmitted] = useState(false);
+
+  const handleFormChange = (newFormData) => {
+    setFormData(newFormData);
+  };
+
+  // When form is submitted, appends task to corresponding container
+  useEffect(() => {
+    if (isFormSubmitted && !currentTask.id) {
+      formData.id = tasks.length + 1;
+      tasks.push(formData);
+      updateTask(formData.status);
+    } else if (isFormSubmitted && currentTask.id) {
+      const taskToEdit = tasks.find((item) => item.id === currentTask.id);
+      taskToEdit.title = formData.title;
+      taskToEdit.description = formData.description;
+      taskToEdit.assignee = formData.assignee;
+      taskToEdit.status = formData.status;
+      taskToEdit.priority = formData.priority;
+      taskToEdit.dueDate = formData.dueDate;
+      updateTask(formData.status);
+    }
+  }, [isFormSubmitted]);
+
+  const updateTask = (status) => {
+    switch (status) {
+      case "To Do":
+        setTodo(filterTasks(tasks, "To Do"));
+        break;
+      case "In Progress":
+        setInProgress(filterTasks(tasks, "In Progress"));
+        break;
+      case "In Review":
+        setInReview(filterTasks(tasks, "In review"));
+        break;
+      case "Done":
+        setDone(filterTasks(tasks, "Done"));
+        break;
+    }
   };
 
   return (
@@ -54,7 +108,12 @@ const Board = () => {
 
       {/* Modal to Create a New Task */}
       {showModal ? (
-        <AddTaskForm closeModal={setShowModal} task={currentTask} />
+        <AddTaskForm
+          closeModal={setShowModal}
+          task={currentTask}
+          setIsFormSubmitted={setIsFormSubmitted}
+          onFormDataChange={handleFormChange}
+        />
       ) : null}
 
       <div className="flex justify-between gap-8 py-5">
