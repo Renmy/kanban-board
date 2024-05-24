@@ -32,11 +32,6 @@ function AddTaskForm({ closeModal, task, handleTask }) {
     closeModal(false);
   };
 
-  const convertDateFormat = (dateString) => {
-    const [year, month, day] = dateString.split("-");
-    return `${month}/${day}/${year}`;
-  };
-
   return (
     <>
       <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
@@ -109,17 +104,13 @@ function AddTaskForm({ closeModal, task, handleTask }) {
                     <label
                       className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                       htmlFor="assignee"
-                      htmlFor="assignee"
                     >
-                      Assignee Assignee
+                      Assignee
                     </label>
                     <input
                       onChange={handleFormChange}
                       value={formData.assignee}
-                      value={formData.assignee}
                       className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                      id="assignee"
-                      name="assignee"
                       id="assignee"
                       name="assignee"
                       type="text"
@@ -202,13 +193,12 @@ function AddTaskForm({ closeModal, task, handleTask }) {
                     <input
                       onChange={handleFormChange}
                       value={formData.dueDate}
-                      value={formData.dueDate}
                       className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                       id="date"
                       name="dueDate"
                       type="date"
                       placeholder=""
-                      min={!formData.id && datePickerId}
+                      min={!formData.id ? datePickerId : ""}
                     />
                   </div>
                 </div>
