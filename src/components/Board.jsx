@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import Column from "./Column";
-import Task from "./Task";
 import React from "react";
 import ManageTaskForm from "./ManageTaskForm";
 import tasksData from "../utils/kanban.json";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const emptyTask = {
   title: "",
@@ -40,14 +41,23 @@ const Board = () => {
   const addTask = (task) => {
     task.id = tasks.length + 1;
     setTasks((prev) => [...prev, task]);
+    toast.success("New Task Added!", {
+      position: "bottom-left",
+    });
   };
 
   const editTask = (task) => {
     setTasks((prev) => prev.map((t) => (t.id === task.id ? task : t)));
+    toast.success("Task Successfully edited!", {
+      position: "bottom-left",
+    });
   };
 
   const removeTask = (task) => {
     setTasks(tasks.filter((t) => t.id !== task.id));
+    toast.error("Task Deleted", {
+      position: "bottom-left",
+    });
   };
 
   //handle both edit and add with the same form

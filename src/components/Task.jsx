@@ -1,7 +1,9 @@
 /* eslint-disable react/prop-types */
 const getInitials = (str) => {
   let initials = str.split(" ");
-  return initials[0][0] + initials[1][0];
+  return (
+    initials[0][0] + (initials.length > 1 && initials[1] ? initials[1][0] : "")
+  );
 };
 const priorityColors = (str) => {
   switch (str) {
@@ -14,12 +16,29 @@ const priorityColors = (str) => {
   }
 };
 
+const borderColors = (str) => {
+  switch (str) {
+    case "To Do":
+      return "border-[#008ba3]/20";
+    case "In Progress":
+      return "border-[#ff5531]/20";
+    case "In Review":
+      return "border-[#ad7d1b]/20";
+    case "Done":
+      return "border-[#3fb182]/20";
+  }
+};
+
 const Task = ({ task }) => {
-  const { id, title, assignee, dueDate, priority } = task;
+  const { id, title, assignee, dueDate, priority, status } = task;
 
   return (
-    <div className="relative flex justify-center  text-slate-700 bg-slate-100 p-3 rounded-lg shadow-lg hover:shadow-none hover:translate-y-0.5 transition-all">
-      <div className="flex flex-col w-3/4 gap-1">
+    <div
+      className={`flex justify-center  text-slate-700 bg-slate-100 p-3 rounded-lg border-2 ${borderColors(
+        status
+      )}`}
+    >
+      <div className="flex flex-col w-3/4 gap-1 justify-center">
         <h3 className="text-sm font-semibold">{title}</h3>
         <span className="text-xs">Due date: {dueDate}</span>
         <span
@@ -34,6 +53,11 @@ const Task = ({ task }) => {
         <span className="rounded-full text-xl  text-white font-bold bg-[#775DA6]/80 w-12 h-12 p-2 text-center">
           {getInitials(assignee)}
         </span>
+        {status === "Done" && (
+          <span className="text-xs py-1 px-2 bg-[#3fb182] rounded-3xl mt-1 mr-1 text-white">
+            Completed
+          </span>
+        )}
       </div>
     </div>
   );

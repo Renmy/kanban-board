@@ -22,7 +22,10 @@ const Column = ({ title, tasks, showTaskDetails, removeTask }) => {
           <h3>There is no tasks {title}</h3>
         ) : (
           tasks.map((task) => (
-            <div key={task.id} className="relative">
+            <div
+              key={task.id}
+              className="relative rounded-lg shadow-lg hover:shadow-none hover:translate-y-0.5 transition-all"
+            >
               <a
                 className="cursor-pointer"
                 onClick={() => showTaskDetails(task)}

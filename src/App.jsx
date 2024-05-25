@@ -5,6 +5,8 @@ import Footer from "./components/Footer";
 import { Route, Routes } from "react-router-dom";
 import BoardPage from "./pages/BoardPage";
 import AboutPage from "./pages/AboutPage";
+import ErrorPage from "./pages/ErrorPage";
+import { ToastContainer } from "react-toastify";
 
 function App() {
   return (
@@ -15,9 +17,11 @@ function App() {
         <Routes>
           <Route path="/" element={<BoardPage />} />
           <Route path="/about" element={<AboutPage />} />
+          <Route path="*" element={<ErrorPage />} />
         </Routes>
       </main>
       <Footer />
+      <ToastContainer autoClose={2000} />
     </>
   );
 }

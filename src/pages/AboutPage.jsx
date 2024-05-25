@@ -7,12 +7,12 @@ import alexis from "../assets/images/alexis.jpeg";
 const AboutPage = () => {
   return (
     <div className="flex flex-col p-5 w-full">
-      <h1 className="p-5 text-2xl border-b-4 border-b-slate-500 pb-7 font-semibold text-slate-700 ">
+      <h1 className=" text-2xl border-b-4 border-b-slate-500 pb-7 text-slate-700  py-5 font-bold ">
         About
       </h1>
       <div className="flex p-4 justify-between gap-5">
         <div className="w-2/3 flex flex-col gap-14">
-          <p className="text-sm text-slate-700">
+          <p className="text-sm text-slate-700 w-3/4 font-semibold">
             A Kanban board is a visual management tool used in project
             management to track and optimize workflows. It typically consists of
             columns representing different stages of a process (e.g., To Do, In
