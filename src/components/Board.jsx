@@ -46,12 +46,16 @@ const Board = () => {
     setTasks((prev) => prev.map((t) => (t.id === task.id ? task : t)));
   };
 
-  const removeTask = (task) => {};
+  const removeTask = (task) => {
+    setTasks(tasks.filter((t) => t.id !== task.id));
+  };
 
+  //handle both edit and add with the same form
   const handleTask = (task) => {
     task.id ? editTask(task) : addTask(task);
   };
 
+  //useEffect to control changes on tasks and refill columns
   useEffect(() => {
     setTodo(() => filterTasks(tasks, "To Do"));
     setInProgress(() => filterTasks(tasks, "In Progress"));
@@ -86,18 +90,30 @@ const Board = () => {
       )}
 
       <div className="flex justify-between gap-8 py-5">
-        <Column title="To Do" tasks={todo} showTaskDetails={showTaskDetails} />
+        <Column
+          title="To Do"
+          tasks={todo}
+          showTaskDetails={showTaskDetails}
+          removeTask={removeTask}
+        />
         <Column
           title="In Progress"
           tasks={inProgress}
           showTaskDetails={showTaskDetails}
+          removeTask={removeTask}
         />
         <Column
           title="In Review"
           tasks={inReview}
           showTaskDetails={showTaskDetails}
+          removeTask={removeTask}
         />
-        <Column title="Done" tasks={done} showTaskDetails={showTaskDetails} />
+        <Column
+          title="Done"
+          tasks={done}
+          showTaskDetails={showTaskDetails}
+          removeTask={removeTask}
+        />
       </div>
     </div>
   );

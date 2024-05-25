@@ -198,15 +198,11 @@ function AddTaskForm({ closeModal, task, handleTask }) {
                       name="dueDate"
                       type="date"
                       placeholder=""
-                      min={!formData.id && datePickerId}
+                      min={!formData.id ? datePickerId : ""}
                     />
                   </div>
                 </div>
-                {/* {formWarningMessage && (
-                  <p className="text-red-400 text-center">
-                    Please fill in all input fields
-                  </p>
-                )} */}
+
                 <div className="flex items-center justify-end p-6 border-t border-solid border-blueGray-200 rounded-b">
                   <button
                     className="text-slate-600 bg-gray-300 hover:bg-gray-400 font-bold uppercase px-6 py-3 text-sm outline-none rounded focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150 "
