@@ -48,14 +48,20 @@ const Board = () => {
 
   const editTask = (task) => {
     setTasks((prev) => prev.map((t) => (t.id === task.id ? task : t)));
-    toast.success("Task Successfully edited!", {
-      position: "bottom-left",
-    });
+    if (task.status === "Done") {
+      toast.success("Task Completed!🎉", {
+        position: "bottom-left",
+      });
+    } else {
+      toast.success("Task Successfully Edited!", {
+        position: "bottom-left",
+      });
+    }
   };
 
   const removeTask = (task) => {
     setTasks(tasks.filter((t) => t.id !== task.id));
-    toast.error("Task Deleted", {
+    toast.error("Task Deleted!❌", {
       position: "bottom-left",
     });
   };

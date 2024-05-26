@@ -19,13 +19,13 @@ const priorityColors = (str) => {
 const borderColors = (str) => {
   switch (str) {
     case "To Do":
-      return "border-[#008ba3]/20";
+      return "hover:border-[#008ba3]/20 hover:border-2";
     case "In Progress":
-      return "border-[#ff5531]/20";
+      return "hover:border-[#ff5531]/20 hover:border-2";
     case "In Review":
-      return "border-[#ad7d1b]/20";
+      return "hover:border-[#ad7d1b]/20 hover:border-2";
     case "Done":
-      return "border-[#3fb182]/20";
+      return "hover:border-[#3fb182]/20 hover:border-2";
   }
 };
 
@@ -34,9 +34,7 @@ const Task = ({ task }) => {
 
   return (
     <div
-      className={`flex justify-center  text-slate-700 bg-slate-100 p-3 rounded-lg border-2 ${borderColors(
-        status
-      )}`}
+      className={`flex justify-center  text-slate-700 bg-slate-100 p-3 rounded-lg`}
     >
       <div className="flex flex-col w-3/4 gap-1 justify-center">
         <h3 className="text-sm font-semibold">{title}</h3>
