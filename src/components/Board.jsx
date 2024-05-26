@@ -5,6 +5,7 @@ import ManageTaskForm from "./ManageTaskForm";
 import tasksData from "../utils/kanban.json";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { DragDropContext, Droppable } from "@hello-pangea/dnd";
 
 const emptyTask = {
   title: "",
@@ -39,7 +40,7 @@ const Board = () => {
   };
 
   const addTask = (task) => {
-    task.id = tasks.length + 1;
+    task.id = (tasks.length + 1).toString();
     setTasks((prev) => [...prev, task]);
     toast.success("New Task Added!", {
       position: "bottom-left",
@@ -71,7 +72,113 @@ const Board = () => {
     task.id ? editTask(task) : addTask(task);
   };
 
-  //useEffect to control changes on tasks and refill columns
+  //Function to reorder tasks once dropped
+  const reorder = (list, startIndex, endIndex) => {
+    const result = [...list];
+    const [removed] = result.splice(startIndex, 1);
+    result.splice(endIndex, 0, removed);
+
+    return result;
+  };
+
+  const handleDrag = (result) => {
+    const { source, destination } = result;
+
+    // Si no hay destino (se soltó fuera de un área droppable) o se soltó en la misma posición
+    if (
+      !destination ||
+      (source.index === destination.index &&
+        source.droppableId === destination.droppableId)
+    ) {
+      return;
+    }
+
+    const startColumn = source.droppableId;
+    const endColumn = destination.droppableId;
+
+    // Mover dentro de la misma columna
+    if (startColumn === endColumn) {
+      switch (startColumn) {
+        case "To Do":
+          setTodo((prev) => reorder(prev, source.index, destination.index));
+          break;
+        case "In Progress":
+          setInProgress((prev) =>
+            reorder(prev, source.index, destination.index)
+          );
+          break;
+        case "In Review":
+          setInReview((prev) => reorder(prev, source.index, destination.index));
+          break;
+        case "Done":
+          setDone((prev) => reorder(prev, source.index, destination.index));
+          break;
+        default:
+          break;
+      }
+    } else {
+      // Mover a una columna diferente
+      let sourceTasks, setSourceTasks;
+      let destinationTasks, setDestinationTasks;
+      // capturar los estados de las columnas implicadas
+      switch (startColumn) {
+        case "To Do":
+          sourceTasks = [...todo];
+          setSourceTasks = setTodo;
+          break;
+        case "In Progress":
+          sourceTasks = [...inProgress];
+          setSourceTasks = setInProgress;
+          break;
+        case "In Review":
+          sourceTasks = [...inReview];
+          setSourceTasks = setInReview;
+          break;
+        case "Done":
+          sourceTasks = [...done];
+          setSourceTasks = setDone;
+          break;
+        default:
+          break;
+      }
+
+      switch (endColumn) {
+        case "To Do":
+          destinationTasks = [...todo];
+          setDestinationTasks = setTodo;
+          break;
+        case "In Progress":
+          destinationTasks = [...inProgress];
+          setDestinationTasks = setInProgress;
+          break;
+        case "In Review":
+          destinationTasks = [...inReview];
+          setDestinationTasks = setInReview;
+          break;
+        case "Done":
+          destinationTasks = [...done];
+          setDestinationTasks = setDone;
+          break;
+        default:
+          break;
+      }
+
+      const [movedTask] = sourceTasks.splice(source.index, 1);
+      destinationTasks.splice(destination.index, 0, movedTask);
+
+      setSourceTasks(sourceTasks);
+      setDestinationTasks(destinationTasks);
+
+      // Actualizar el estado de la tarea movida para reflejar la nueva columna
+      setTasks((prevTasks) =>
+        prevTasks.map((task) =>
+          task.id === movedTask.id ? { ...task, status: endColumn } : task
+        )
+      );
+    }
+  };
+
+  // useEffect to control changes on tasks and refill columns
   useEffect(() => {
     setTodo(() => filterTasks(tasks, "To Do"));
     setInProgress(() => filterTasks(tasks, "In Progress"));
@@ -104,33 +211,57 @@ const Board = () => {
           handleTask={handleTask}
         />
       )}
+      <DragDropContext onDragEnd={(result) => handleDrag(result)}>
+        <div className="flex justify-between gap-8 py-5">
+          <Droppable droppableId="To Do">
+            {(droppableProvided) => (
+              <Column
+                title="To Do"
+                tasks={todo}
+                showTaskDetails={showTaskDetails}
+                removeTask={removeTask}
+                droppableProvided={droppableProvided}
+              />
+            )}
+          </Droppable>
 
-      <div className="flex justify-between gap-8 py-5">
-        <Column
-          title="To Do"
-          tasks={todo}
-          showTaskDetails={showTaskDetails}
-          removeTask={removeTask}
-        />
-        <Column
-          title="In Progress"
-          tasks={inProgress}
-          showTaskDetails={showTaskDetails}
-          removeTask={removeTask}
-        />
-        <Column
-          title="In Review"
-          tasks={inReview}
-          showTaskDetails={showTaskDetails}
-          removeTask={removeTask}
-        />
-        <Column
-          title="Done"
-          tasks={done}
-          showTaskDetails={showTaskDetails}
-          removeTask={removeTask}
-        />
-      </div>
+          <Droppable droppableId="In Progress">
+            {(droppableProvided) => (
+              <Column
+                title="In Progress"
+                tasks={inProgress}
+                showTaskDetails={showTaskDetails}
+                removeTask={removeTask}
+                droppableProvided={droppableProvided}
+              />
+            )}
+          </Droppable>
+
+          <Droppable droppableId="In Review">
+            {(droppableProvided) => (
+              <Column
+                title="In Review"
+                tasks={inReview}
+                showTaskDetails={showTaskDetails}
+                removeTask={removeTask}
+                droppableProvided={droppableProvided}
+              />
+            )}
+          </Droppable>
+
+          <Droppable droppableId="Done">
+            {(droppableProvided) => (
+              <Column
+                title="Done"
+                tasks={done}
+                showTaskDetails={showTaskDetails}
+                removeTask={removeTask}
+                droppableProvided={droppableProvided}
+              />
+            )}
+          </Droppable>
+        </div>
+      </DragDropContext>
     </div>
   );
 };
