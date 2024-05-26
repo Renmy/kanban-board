@@ -5,7 +5,7 @@ import ManageTaskForm from "./ManageTaskForm";
 import tasksData from "../utils/kanban.json";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { DragDropContext, Droppable } from "@hello-pangea/dnd";
+import { DragDropContext } from "@hello-pangea/dnd";
 
 const emptyTask = {
   title: "",
@@ -159,8 +159,6 @@ const Board = () => {
           destinationTasks = [...done];
           setDestinationTasks = setDone;
           break;
-        default:
-          break;
       }
 
       const [movedTask] = sourceTasks.splice(source.index, 1);
@@ -213,53 +211,33 @@ const Board = () => {
       )}
       <DragDropContext onDragEnd={(result) => handleDrag(result)}>
         <div className="flex justify-between gap-8 py-5">
-          <Droppable droppableId="To Do">
-            {(droppableProvided) => (
-              <Column
-                title="To Do"
-                tasks={todo}
-                showTaskDetails={showTaskDetails}
-                removeTask={removeTask}
-                droppableProvided={droppableProvided}
-              />
-            )}
-          </Droppable>
+          <Column
+            title="To Do"
+            tasks={todo}
+            showTaskDetails={showTaskDetails}
+            removeTask={removeTask}
+          />
 
-          <Droppable droppableId="In Progress">
-            {(droppableProvided) => (
-              <Column
-                title="In Progress"
-                tasks={inProgress}
-                showTaskDetails={showTaskDetails}
-                removeTask={removeTask}
-                droppableProvided={droppableProvided}
-              />
-            )}
-          </Droppable>
+          <Column
+            title="In Progress"
+            tasks={inProgress}
+            showTaskDetails={showTaskDetails}
+            removeTask={removeTask}
+          />
 
-          <Droppable droppableId="In Review">
-            {(droppableProvided) => (
-              <Column
-                title="In Review"
-                tasks={inReview}
-                showTaskDetails={showTaskDetails}
-                removeTask={removeTask}
-                droppableProvided={droppableProvided}
-              />
-            )}
-          </Droppable>
+          <Column
+            title="In Review"
+            tasks={inReview}
+            showTaskDetails={showTaskDetails}
+            removeTask={removeTask}
+          />
 
-          <Droppable droppableId="Done">
-            {(droppableProvided) => (
-              <Column
-                title="Done"
-                tasks={done}
-                showTaskDetails={showTaskDetails}
-                removeTask={removeTask}
-                droppableProvided={droppableProvided}
-              />
-            )}
-          </Droppable>
+          <Column
+            title="Done"
+            tasks={done}
+            showTaskDetails={showTaskDetails}
+            removeTask={removeTask}
+          />
         </div>
       </DragDropContext>
     </div>
