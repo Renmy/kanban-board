@@ -162,22 +162,17 @@ const Board = () => {
       }
 
       const [movedTask] = sourceTasks.splice(source.index, 1);
+      movedTask.status = endColumn;
       destinationTasks.splice(destination.index, 0, movedTask);
 
       setSourceTasks(sourceTasks);
       setDestinationTasks(destinationTasks);
-
-      // Actualizar el estado de la tarea movida para reflejar la nueva columna
-      setTasks((prevTasks) =>
-        prevTasks.map((task) =>
-          task.id === movedTask.id ? { ...task, status: endColumn } : task
-        )
-      );
     }
   };
 
   // useEffect to control changes on tasks and refill columns
   useEffect(() => {
+    console.log("task changing!");
     setTodo(() => filterTasks(tasks, "To Do"));
     setInProgress(() => filterTasks(tasks, "In Progress"));
     setInReview(() => filterTasks(tasks, "In Review"));
