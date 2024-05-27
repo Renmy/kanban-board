@@ -1,10 +1,20 @@
 import Task from "./Task";
 import { Droppable, Draggable } from "@hello-pangea/dnd";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
 
-const Column = ({ title, tasks, showTaskDetails, removeTask }) => {
-  const handleDelete = (task) => {
-    confirm("Are you sure you want to delete this task?") && removeTask(task);
+const Column = ({
+  title,
+  tasks,
+  showTaskDetails,
+  setShowDeleteModal,
+  setCurrentTask,
+}) => {
+  const handleTrashIconClick = (task) => {
+    setCurrentTask(task);
+    setShowDeleteModal(true);
   };
+
   return (
     <div className={`w-[25%]  px-0 `}>
       <div
@@ -44,14 +54,11 @@ const Column = ({ title, tasks, showTaskDetails, removeTask }) => {
                       >
                         <Task task={task} />
                       </a>
-                      <button
-                        className="absolute top-0 right-0"
-                        onClick={() => handleDelete(task)}
-                      >
-                        <span className="bg-transparent text-red-400 font-semibold h-6 w-6 text-lg block outline-none focus:outline-none hover:scale-125">
-                          ×
-                        </span>
-                      </button>
+                      <FontAwesomeIcon
+                        className="absolute top-3 right-3 text-xs text-slate-300 cursor-pointer hover:text-red-500 hover:scale-125"
+                        icon={faTrash}
+                        onClick={() => handleTrashIconClick(task)}
+                      />
                     </div>
                   )}
                 </Draggable>

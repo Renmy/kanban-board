@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import Column from "./Column";
 import React from "react";
 import ManageTaskForm from "./ManageTaskForm";
+import DeleteModal from "./DeleteModal";
 import tasksData from "../utils/kanban.json";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -31,6 +32,7 @@ const Board = () => {
   const [done, setDone] = useState(filterTasks(tasks, "Done"));
 
   const [showModal, setShowModal] = React.useState(false);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
 
   const [currentTask, setCurrentTask] = useState(emptyTask);
 
@@ -62,6 +64,7 @@ const Board = () => {
 
   const removeTask = (task) => {
     setTasks(tasks.filter((t) => t.id !== task.id));
+    setShowDeleteModal(false);
     toast.error("Task Deleted!❌", {
       position: "bottom-left",
     });
@@ -214,34 +217,45 @@ const Board = () => {
           handleTask={handleTask}
         />
       )}
+      {showDeleteModal && (
+        <DeleteModal
+          setShowDeleteModal={setShowDeleteModal}
+          task={currentTask}
+          removeTask={removeTask}
+        />
+      )}
       <DragDropContext onDragEnd={(result) => handleDrag(result)}>
         <div className="flex justify-between gap-8 py-5">
           <Column
             title="To Do"
             tasks={todo}
             showTaskDetails={showTaskDetails}
-            removeTask={removeTask}
+            setShowDeleteModal={setShowDeleteModal}
+            setCurrentTask={setCurrentTask}
           />
 
           <Column
             title="In Progress"
             tasks={inProgress}
             showTaskDetails={showTaskDetails}
-            removeTask={removeTask}
+            setShowDeleteModal={setShowDeleteModal}
+            setCurrentTask={setCurrentTask}
           />
 
           <Column
             title="In Review"
             tasks={inReview}
             showTaskDetails={showTaskDetails}
-            removeTask={removeTask}
+            setShowDeleteModal={setShowDeleteModal}
+            setCurrentTask={setCurrentTask}
           />
 
           <Column
             title="Done"
             tasks={done}
             showTaskDetails={showTaskDetails}
-            removeTask={removeTask}
+            setShowDeleteModal={setShowDeleteModal}
+            setCurrentTask={setCurrentTask}
           />
         </div>
       </DragDropContext>
