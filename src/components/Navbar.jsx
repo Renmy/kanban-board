@@ -1,4 +1,5 @@
 import KanbanIcon from "../assets/images/kanban.png";
+import Logo from "../assets/images/Task-To-Go-Logo.png";
 import userSvg from "../assets/icons/user.svg";
 import notifySvg from "../assets/icons/notification.svg";
 
@@ -6,8 +7,7 @@ function Navbar() {
   return (
     <nav className="flex justify-between p-4 shadow-lg ">
       <div className="flex items-center gap-4">
-        <img className="h-16" src={KanbanIcon} alt="kanban" srcSet="" />
-        <h1 className="text-3xl font-semibold text-slate-700">Task-To-Go</h1>
+        <img className="h-20 w-40" src={Logo} alt="kanban" srcSet="" />
       </div>
       <div className="flex items-center gap-4">
         <input

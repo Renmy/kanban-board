@@ -10,7 +10,7 @@ import { ToastContainer } from "react-toastify";
 
 function App() {
   return (
-    <>
+    <div className="min-h-screen flex flex-col">
       <Navbar />
       <main className="flex">
         <Sidebar />
@@ -22,7 +22,7 @@ function App() {
       </main>
       <Footer />
       <ToastContainer autoClose={2000} />
-    </>
+    </div>
   );
 }
 
