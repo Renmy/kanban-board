@@ -1,7 +1,7 @@
 import { Droppable } from "react-beautiful-dnd";
 import Task from "./Task";
 
-const Column = ({ title, tasks, showTaskDetails }) => {
+const Column = ({ title, tasks, showTaskDetails, setShowDeleteModal }) => {
   return (
     <div className={`w-[25%]  px-0 `}>
       <div
@@ -30,6 +30,7 @@ const Column = ({ title, tasks, showTaskDetails }) => {
                 assignee={task.assignee}
                 dueDate={task.dueDate}
                 priority={task.priority}
+                setShowDeleteModal={setShowDeleteModal}
               />
             </a>
           ))

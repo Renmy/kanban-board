@@ -28,7 +28,8 @@ const Board = () => {
   const [inReview, setInReview] = useState(filterTasks(tasks, "In Review"));
   const [done, setDone] = useState(filterTasks(tasks, "Done"));
 
-  const [showModal, setShowModal] = React.useState(false);
+  const [showModal, setShowModal] = useState(false);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
 
   const [currentTask, setCurrentTask] = useState(emptyTask);
 
@@ -59,6 +60,8 @@ const Board = () => {
     setDone(() => filterTasks(tasks, "Done"));
   }, [tasks]);
 
+  console.log(showDeleteModal);
+
   return (
     <div className="flex flex-col p-5 w-full">
       <div className="flex items-center justify-between border-b-4 py-2">
@@ -86,18 +89,30 @@ const Board = () => {
       )}
 
       <div className="flex justify-between gap-8 py-5">
-        <Column title="To Do" tasks={todo} showTaskDetails={showTaskDetails} />
+        <Column
+          title="To Do"
+          tasks={todo}
+          showTaskDetails={showTaskDetails}
+          setShowDeleteModal={setShowDeleteModal}
+        />
         <Column
           title="In Progress"
           tasks={inProgress}
           showTaskDetails={showTaskDetails}
+          setShowDeleteModal={setShowDeleteModal}
         />
         <Column
           title="In Review"
           tasks={inReview}
           showTaskDetails={showTaskDetails}
+          setShowDeleteModal={setShowDeleteModal}
         />
-        <Column title="Done" tasks={done} showTaskDetails={showTaskDetails} />
+        <Column
+          title="Done"
+          tasks={done}
+          showTaskDetails={showTaskDetails}
+          setShowDeleteModal={setShowDeleteModal}
+        />
       </div>
     </div>
   );
