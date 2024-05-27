@@ -1,6 +1,3 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrash } from "@fortawesome/free-solid-svg-icons";
-
 /* eslint-disable react/prop-types */
 const getInitials = (str) => {
   let initials = str.split(" ");
@@ -20,23 +17,11 @@ const priorityColors = (str) => {
   }
 };
 
-const Task = ({
-  id,
-  title,
-  assignee,
-  dueDate,
-  priority,
-  setShowDeleteModal,
-}) => {
+const Task = ({ id, title, assignee, dueDate, priority }) => {
   return (
-    <div className="flex justify-center  text-slate-700 bg-slate-100 p-3 rounded-lg shadow-lg hover:shadow-none hover:translate-y-0.5 transition-all relative">
+    <div className="flex justify-center  text-slate-700 bg-slate-100 p-3 rounded-lg shadow-lg hover:shadow-none hover:translate-y-0.5 transition-all">
       <div className="flex flex-col w-3/4 gap-1 ">
         <h3 className="text-sm font-semibold">{title}</h3>
-        <FontAwesomeIcon
-          className="absolute top-3 right-3 text-xs text-slate-300 hover:text-red-500"
-          icon={faTrash}
-          onClick={() => setShowDeleteModal(true)}
-        />
         <span className="text-xs">Due date: {dueDate}</span>
         <span
           className={`text-xs text-white p-1 ${priorityColors(

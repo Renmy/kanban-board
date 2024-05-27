@@ -4,6 +4,7 @@ import Task from "./Task";
 import React from "react";
 import ManageTaskForm from "./ManageTaskForm";
 import tasksData from "../utils/kanban.json";
+import DeleteModal from "./DeleteModal";
 
 const emptyTask = {
   title: "",
@@ -47,7 +48,10 @@ const Board = () => {
     setTasks((prev) => prev.map((t) => (t.id === task.id ? task : t)));
   };
 
-  const removeTask = (task) => {};
+  const removeTask = (task) => {
+    setTasks(tasks.filter((t) => t.id !== task.id));
+    setShowDeleteModal(false);
+  };
 
   const handleTask = (task) => {
     task.id ? editTask(task) : addTask(task);
@@ -59,8 +63,6 @@ const Board = () => {
     setInReview(() => filterTasks(tasks, "In Review"));
     setDone(() => filterTasks(tasks, "Done"));
   }, [tasks]);
-
-  console.log(showDeleteModal);
 
   return (
     <div className="flex flex-col p-5 w-full">
@@ -88,30 +90,42 @@ const Board = () => {
         />
       )}
 
+      {showDeleteModal && (
+        <DeleteModal
+          setShowDeleteModal={setShowDeleteModal}
+          task={currentTask}
+          removeTask={removeTask}
+        />
+      )}
+
       <div className="flex justify-between gap-8 py-5">
         <Column
           title="To Do"
           tasks={todo}
           showTaskDetails={showTaskDetails}
           setShowDeleteModal={setShowDeleteModal}
+          setCurrentTask={setCurrentTask}
         />
         <Column
           title="In Progress"
           tasks={inProgress}
           showTaskDetails={showTaskDetails}
           setShowDeleteModal={setShowDeleteModal}
+          setCurrentTask={setCurrentTask}
         />
         <Column
           title="In Review"
           tasks={inReview}
           showTaskDetails={showTaskDetails}
           setShowDeleteModal={setShowDeleteModal}
+          setCurrentTask={setCurrentTask}
         />
         <Column
           title="Done"
           tasks={done}
           showTaskDetails={showTaskDetails}
           setShowDeleteModal={setShowDeleteModal}
+          setCurrentTask={setCurrentTask}
         />
       </div>
     </div>

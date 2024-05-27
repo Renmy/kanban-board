@@ -1,7 +1,19 @@
-import { Droppable } from "react-beautiful-dnd";
 import Task from "./Task";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
 
-const Column = ({ title, tasks, showTaskDetails, setShowDeleteModal }) => {
+const Column = ({
+  title,
+  tasks,
+  showTaskDetails,
+  setShowDeleteModal,
+  setCurrentTask,
+}) => {
+  const handleTrashIconClick = (task) => {
+    setCurrentTask(task);
+    setShowDeleteModal(true);
+  };
+
   return (
     <div className={`w-[25%]  px-0 `}>
       <div
@@ -19,20 +31,26 @@ const Column = ({ title, tasks, showTaskDetails, setShowDeleteModal }) => {
           <h3>There is no tasks {title}</h3>
         ) : (
           tasks.map((task) => (
-            <a
-              className="cursor-pointer"
-              onClick={() => showTaskDetails(task)}
-              key={task.id}
-            >
-              <Task
-                id={task.id}
-                title={task.title}
-                assignee={task.assignee}
-                dueDate={task.dueDate}
-                priority={task.priority}
-                setShowDeleteModal={setShowDeleteModal}
+            <div className="relative">
+              <a
+                className="cursor-pointer"
+                onClick={() => showTaskDetails(task)}
+                key={task.id}
+              >
+                <Task
+                  id={task.id}
+                  title={task.title}
+                  assignee={task.assignee}
+                  dueDate={task.dueDate}
+                  priority={task.priority}
+                />
+              </a>
+              <FontAwesomeIcon
+                className="absolute top-3 right-3 text-xs text-slate-300 cursor-pointer hover:text-red-500 hover:scale-125"
+                icon={faTrash}
+                onClick={() => handleTrashIconClick(task)}
               />
-            </a>
+            </div>
           ))
         )}
       </div>
