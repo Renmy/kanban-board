@@ -165,6 +165,17 @@ const Board = () => {
       movedTask.status = endColumn;
       destinationTasks.splice(destination.index, 0, movedTask);
 
+      //toast notification after moving tasks
+      if (movedTask.status === "Done") {
+        toast.success("Task Completed!🎉", {
+          position: "bottom-left",
+        });
+      } else {
+        toast.success("Task Successfully Edited!", {
+          position: "bottom-left",
+        });
+      }
+
       setSourceTasks(sourceTasks);
       setDestinationTasks(destinationTasks);
     }
@@ -172,7 +183,6 @@ const Board = () => {
 
   // useEffect to control changes on tasks and refill columns
   useEffect(() => {
-    console.log("task changing!");
     setTodo(() => filterTasks(tasks, "To Do"));
     setInProgress(() => filterTasks(tasks, "In Progress"));
     setInReview(() => filterTasks(tasks, "In Review"));

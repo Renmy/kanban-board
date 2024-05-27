@@ -48,7 +48,7 @@ const Column = ({ title, tasks, showTaskDetails, removeTask }) => {
                         className="absolute top-0 right-0"
                         onClick={() => handleDelete(task)}
                       >
-                        <span className="bg-transparent text-red-500  h-6 w-6 text-lg block outline-none focus:outline-none hover:scale-125">
+                        <span className="bg-transparent text-red-400 font-semibold h-6 w-6 text-lg block outline-none focus:outline-none hover:scale-125">
                           ×
                         </span>
                       </button>

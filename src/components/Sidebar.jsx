@@ -1,6 +1,6 @@
 import boardSvg from "../assets/icons/board1.svg";
 import aboutSvg from "../assets/icons/about1.svg";
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 function Sidebar() {
   return (
