@@ -1,9 +1,11 @@
 /* eslint-disable react/prop-types */
 const getInitials = (str) => {
   let initials = str.split(" ");
+
   return (
     initials[0][0] + (initials.length > 1 && initials[1] ? initials[1][0] : "")
   );
+
 };
 const priorityColors = (str) => {
   switch (str) {
