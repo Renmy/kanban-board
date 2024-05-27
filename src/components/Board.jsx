@@ -18,7 +18,9 @@ const emptyTask = {
 };
 
 const Board = () => {
-  const [tasks, setTasks] = useState(tasksData);
+  const [tasks, setTasks] = useState(
+    JSON.parse(localStorage.getItem("tasks")) ?? tasksData
+  );
 
   const filterTasks = (tasks, column) => {
     return tasks.filter((task) => task.status === column);
@@ -190,6 +192,7 @@ const Board = () => {
     setInProgress(() => filterTasks(tasks, "In Progress"));
     setInReview(() => filterTasks(tasks, "In Review"));
     setDone(() => filterTasks(tasks, "Done"));
+    localStorage.setItem("tasks", JSON.stringify(tasks));
   }, [tasks]);
 
   return (
