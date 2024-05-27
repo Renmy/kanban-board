@@ -41,7 +41,7 @@ function AddTaskForm({ closeModal, task, handleTask }) {
             {/*header*/}
             <div className="flex items-start justify-between p-5 border-b border-solid border-blueGray-200 rounded-t">
               <h3 className="text-3xl text-gray-700 font-semibold">
-                {formData.id ? "Edit" : "Create a new"} task
+                {formData.id ? "Task Details" : "Create Task"}
               </h3>
               <button
                 className="p-1 ml-auto bg-transparent border-0 text-black float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
@@ -202,11 +202,7 @@ function AddTaskForm({ closeModal, task, handleTask }) {
                     />
                   </div>
                 </div>
-                {/* {formWarningMessage && (
-                  <p className="text-red-400 text-center">
-                    Please fill in all input fields
-                  </p>
-                )} */}
+
                 <div className="flex items-center justify-end p-6 border-t border-solid border-blueGray-200 rounded-b">
                   <button
                     className="text-slate-600 bg-gray-300 hover:bg-gray-400 font-bold uppercase px-6 py-3 text-sm outline-none rounded focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150 "
