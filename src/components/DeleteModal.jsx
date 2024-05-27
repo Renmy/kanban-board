@@ -37,7 +37,7 @@ function DeleteModal({ setShowDeleteModal, task, removeTask }) {
               />
             </svg>
             <h4 className="text-xl font-semibold mt-6">
-              Are you sure you want to delete?
+              Are you sure you want to delete this task?
             </h4>
             <p className="text-sm text-gray-500 mt-4">
               This action cannot be undone
