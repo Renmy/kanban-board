@@ -184,6 +184,7 @@ const Board = () => {
       setSourceTasks(sourceTasks);
       setDestinationTasks(destinationTasks);
     }
+    localStorage.setItem("tasks", JSON.stringify(tasks));
   };
 
   // useEffect to control changes on tasks and refill columns
