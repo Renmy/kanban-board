@@ -54,7 +54,7 @@ const Board = () => {
   const editTask = (task) => {
     setTasks((prev) => prev.map((t) => (t.id === task.id ? task : t)));
     if (task.status === "Done") {
-      toast.success("Task Completed!🎉", {
+      toast.success("Task Completed! 🎉", {
         position: "bottom-left",
       });
     } else {
@@ -67,7 +67,7 @@ const Board = () => {
   const removeTask = (task) => {
     setTasks(tasks.filter((t) => t.id !== task.id));
     setShowDeleteModal(false);
-    toast.error("Task Deleted!❌", {
+    toast.error("Task Deleted! ❌", {
       position: "bottom-left",
     });
   };
