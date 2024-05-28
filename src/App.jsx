@@ -10,9 +10,9 @@ import { ToastContainer } from "react-toastify";
 
 function App() {
   return (
-    <>
+    <div className="max-h-[99vh]">
       <Navbar />
-      <main className="flex">
+      <main className="flex max-h-[80vh] h-[80vh]">
         <Sidebar />
         <Routes>
           <Route path="/" element={<BoardPage />} />
@@ -22,7 +22,7 @@ function App() {
       </main>
       <Footer />
       <ToastContainer autoClose={2000} />
-    </>
+    </div>
   );
 }
 

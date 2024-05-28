@@ -27,7 +27,7 @@ const AboutPage = () => {
         <div className="w-1/3 flex flex-col gap-5 px-10">
           <div className="flex flex-col shadow-lg text-slate-700 gap-5 py-5 mx-5 rounded-lg ">
             <h3 className="font-bold text-center">Team Members</h3>
-            <div className="flex justify-evenly items-center">
+            <div className="flex justify-evenly items-center px-1">
               <a
                 href="https://www.linkedin.com/in/alejandro-cartagena/"
                 target="_blank"
@@ -35,7 +35,7 @@ const AboutPage = () => {
                 <img
                   src={alejandro}
                   alt="team-pic"
-                  className="h-10 rounded-full shadow-md shadow-purple-400 hover:scale-105 transition-all"
+                  className="h-[4vw] w-auto rounded-full shadow-md shadow-purple-400 hover:scale-105 transition-all"
                 />
               </a>
               <a
@@ -45,14 +45,14 @@ const AboutPage = () => {
                 <img
                   src={alexis}
                   alt="team-pic"
-                  className="h-10 rounded-full shadow-md shadow-purple-400 hover:scale-105 transition-all"
+                  className="h-[4vw] w-auto rounded-full shadow-md shadow-purple-400 hover:scale-105 transition-all"
                 />
               </a>
               <a href="https://www.linkedin.com/in/renmye/" target="_blank">
                 <img
                   src={renmy}
                   alt="team-pic"
-                  className="h-10 rounded-full shadow-md shadow-purple-400 hover:scale-105 transition-all"
+                  className="h-[4vw] w-auto rounded-full shadow-md shadow-purple-400 hover:scale-105 transition-all"
                 />
               </a>
             </div>

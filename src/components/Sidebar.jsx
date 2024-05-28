@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 
 function Sidebar() {
   return (
-    <aside className="w-[240px] min-w-[240px] flex flex-col h-[80vh] py-12 bg-slate-100 gap-2 px-6">
+    <aside className="w-[240px] min-w-[240px] flex flex-col min-h-[100%] py-12 bg-slate-100 gap-2 px-6 font-semibold">
       <NavLink
         to="/"
         className={({ isActive }) =>

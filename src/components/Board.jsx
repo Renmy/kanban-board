@@ -101,11 +101,12 @@ const Board = () => {
     const startColumn = source.droppableId;
     const endColumn = destination.droppableId;
 
-    // Mover dentro de la misma columna
+    // Moving at the same column
     if (startColumn === endColumn) {
       switch (startColumn) {
         case "To Do":
           setTodo((prev) => reorder(prev, source.index, destination.index));
+          console.log([...todo]);
           break;
         case "In Progress":
           setInProgress((prev) =>
@@ -122,10 +123,10 @@ const Board = () => {
           break;
       }
     } else {
-      // Mover a una columna diferente
+      // Moving to a different column
       let sourceTasks, setSourceTasks;
       let destinationTasks, setDestinationTasks;
-      // capturar los estados de las columnas implicadas
+      // capturing states of moving columns
       switch (startColumn) {
         case "To Do":
           sourceTasks = [...todo];
@@ -184,6 +185,7 @@ const Board = () => {
       setSourceTasks(sourceTasks);
       setDestinationTasks(destinationTasks);
     }
+    localStorage.setItem("tasks", JSON.stringify(tasks));
   };
 
   // useEffect to control changes on tasks and refill columns
@@ -197,19 +199,18 @@ const Board = () => {
 
   return (
     <div className="flex flex-col p-5 w-full">
-      <div className="flex items-center justify-between border-b-4 py-2">
+      <div className="flex items-center justify-between border-b-4 border-b-slate-500">
         <h1 className="py-5 text-2xl pb-7 font-bold text-slate-700 ">
           Project Board
         </h1>
-        <div>
-          <button
-            onClick={() => showTaskDetails(emptyTask)}
-            htmlFor="tw-modal"
-            className="cursor-pointer rounded bg-[#775DA6] text-white px-4 py-2 active:bg-slate-400 hover:bg-[#544274] ease-in duration-100 hover:scale-105"
-          >
-            ADD Task +
-          </button>
-        </div>
+
+        <button
+          onClick={() => showTaskDetails(emptyTask)}
+          htmlFor="tw-modal"
+          className="cursor-pointer rounded bg-[#775DA6] text-white px-4 py-2 active:bg-slate-400 hover:bg-[#544274] ease-in duration-100 hover:scale-105 w-fit"
+        >
+          ADD Task +
+        </button>
       </div>
 
       {/* Modal to Create a New Task */}

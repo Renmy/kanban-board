@@ -4,7 +4,7 @@ import { faGithub } from "@fortawesome/free-brands-svg-icons";
 function Footer() {
   return (
     <>
-      <footer className="flex justify-between items-center px-96">
+      <footer className="flex justify-between items-center px-[20%] h-[10vh]">
         <p className="ml-10">© Task-To-Go 2024. IronHack Mini Project</p>
         <a href="https://github.com/Renmy/kanban-board">
           <FontAwesomeIcon
