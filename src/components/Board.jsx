@@ -38,6 +38,10 @@ const Board = () => {
 
   const [currentTask, setCurrentTask] = useState(emptyTask);
 
+  const handleArrowClick = () => {
+    setShowSideBar(true);
+  };
+
   const showTaskDetails = (task) => {
     setCurrentTask(task);
     setShowModal(true);
@@ -197,21 +201,23 @@ const Board = () => {
   }, [tasks]);
 
   return (
-    <div className="flex flex-col p-5 w-full">
-      <div className="flex items-center justify-between border-b-4 py-2">
-        <h1 className="py-5 text-2xl pb-7 font-bold text-slate-700 ">
+    <div className="flex flex-col py-5 px-16 w-full">
+      <div className="flex items-center justify-between border-b-4 py-2 max-[675px]:flex-col">
+        <h1 className="py-5 text-2xl pb-7 font-bold text-slate-700 max-[675px]:pb-4">
           Project Board
         </h1>
         <div>
           <button
             onClick={() => showTaskDetails(emptyTask)}
             htmlFor="tw-modal"
-            className="cursor-pointer rounded bg-[#775DA6] text-white px-4 py-2 active:bg-slate-400 hover:bg-[#544274] ease-in duration-100 hover:scale-105"
+            className="cursor-pointer rounded bg-[#775DA6] text-white px-4 py-2 active:bg-slate-400 hover:bg-[#544274] ease-in duration-100 hover:scale-105 max-[675px]:mb-2"
           >
             ADD Task +
           </button>
         </div>
       </div>
+
+      {/* {setShowSideBar && <SidebarSmallScreen />} */}
 
       {/* Modal to Create a New Task */}
       {showModal && (
@@ -229,7 +235,7 @@ const Board = () => {
         />
       )}
       <DragDropContext onDragEnd={(result) => handleDrag(result)}>
-        <div className="flex justify-between gap-8 py-5">
+        <div className="flex flex-wrap justify-between gap-1 py-5">
           <Column
             title="To Do"
             tasks={todo}
