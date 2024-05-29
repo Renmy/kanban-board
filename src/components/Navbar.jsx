@@ -4,15 +4,20 @@ import notifySvg from "../assets/icons/notification.svg";
 
 function Navbar() {
   return (
-    <nav className="flex justify-between py-4 pl-4 pr-16 shadow-lg ">
+    <nav className="flex justify-between py-4 pl-4 pr-16 shadow-lg max-[530px]:pr-4">
       <div className="flex items-center gap-4">
-        <img className="h-16" src={logo} alt="kanban" srcSet="" />
+        <img
+          className="h-16 max-[530px]:h-10"
+          src={logo}
+          alt="kanban"
+          srcSet=""
+        />
       </div>
       <div className="flex items-center gap-4">
         <input
           type="text"
           name="search"
-          className="bg-slate-100 px-4 py-1 rounded-xl text-sm focus:border-purple-800/60 focus:outline-none focus:ring-0 focus:border-2"
+          className="bg-slate-100 px-4 py-1 rounded-xl text-sm focus:border-purple-800/60 focus:outline-none focus:ring-0 focus:border-2 max-[530px]:w-[100px]"
           placeholder="Search..."
         />
         <img className="h-8" src={notifySvg} alt="kanban" />
