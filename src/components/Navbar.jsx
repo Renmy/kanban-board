@@ -7,7 +7,7 @@ function Navbar() {
     <nav className="flex justify-between py-4 pl-4 pr-16 shadow-lg max-[530px]:pr-4">
       <div className="flex items-center gap-4">
         <img
-          className="h-16 max-[530px]:h-10"
+          className="h-16 max-[530px]:h-12"
           src={logo}
           alt="kanban"
           srcSet=""
