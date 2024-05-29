@@ -35,7 +35,7 @@ function AddTaskForm({ closeModal, task, handleTask }) {
   return (
     <>
       <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
-        <div className="relative w-auto my-6 mx-auto max-w-3xl ">
+        <div className="relative w-auto my-6 mx-auto max-w-3xl max-[500px]:mx-4">
           {/*content*/}
           <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
             {/*header*/}
@@ -99,8 +99,8 @@ function AddTaskForm({ closeModal, task, handleTask }) {
                 </div>
 
                 {/* assignee and Status */}
-                <div className="flex flex-wrap -mx-3 mb-6">
-                  <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                <div className="flex -mx-3 mb-6">
+                  <div className="w-full md:w-1/2 px-3 md:mb-0">
                     <label
                       className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                       htmlFor="assignee"
@@ -117,7 +117,7 @@ function AddTaskForm({ closeModal, task, handleTask }) {
                       placeholder="Name"
                     />
                   </div>
-                  <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                  <div className="w-full md:w-1/2 px-3 md:mb-0">
                     <label
                       className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                       htmlFor="status"
@@ -151,8 +151,8 @@ function AddTaskForm({ closeModal, task, handleTask }) {
                 </div>
 
                 {/* Priority and Date Picker */}
-                <div className="flex flex-wrap -mx-3 mb-6">
-                  <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                <div className="flex -mx-3 mb-6">
+                  <div className="w-full md:w-1/2 px-3 md:mb-0">
                     <label
                       className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                       htmlFor="priority"
@@ -183,7 +183,7 @@ function AddTaskForm({ closeModal, task, handleTask }) {
                     </div>
                   </div>
 
-                  <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                  <div className="w-full md:w-1/2 px-3 md:mb-0">
                     <label
                       className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                       htmlFor="date"
