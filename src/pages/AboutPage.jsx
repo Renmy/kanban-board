@@ -6,7 +6,7 @@ import alexis from "../assets/images/alexis.jpeg";
 
 const AboutPage = () => {
   return (
-    <div className="flex flex-col p-5 w-full">
+    <div className="flex flex-col py-5 px-16 w-full">
       <h1 className=" text-2xl border-b-4 border-b-slate-200 pb-9 text-slate-700  py-7 font-bold ">
         About
       </h1>

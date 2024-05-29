@@ -4,7 +4,7 @@ import notifySvg from "../assets/icons/notification.svg";
 
 function Navbar() {
   return (
-    <nav className="flex justify-between p-4 shadow-lg ">
+    <nav className="flex justify-between py-4 pl-4 pr-16 shadow-lg ">
       <div className="flex items-center gap-4">
         <img className="h-16" src={logo} alt="kanban" srcSet="" />
       </div>

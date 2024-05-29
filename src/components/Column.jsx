@@ -16,7 +16,9 @@ const Column = ({
   };
 
   return (
-    <div className={`w-[25%]  px-0 `}>
+    <div
+      className={`w-[23%] min-w-[235px]  px-0 max-[1095px]:w-[45%] max-[856px]:w-[100%]`}
+    >
       <div
         className={`${title
           .replace(/\s+/g, "")

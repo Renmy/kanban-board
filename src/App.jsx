@@ -7,13 +7,27 @@ import BoardPage from "./pages/BoardPage";
 import AboutPage from "./pages/AboutPage";
 import ErrorPage from "./pages/ErrorPage";
 import { ToastContainer } from "react-toastify";
+import SidebarFixed from "./components/SidebarFixed";
+
+import { useState } from "react";
 
 function App() {
+  const [showSideBar, setShowSideBar] = useState(true);
+
+  const handleArrowClick = () => {
+    setShowSideBar(!showSideBar);
+  };
+
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col relative">
       <Navbar />
+      {showSideBar && <SidebarFixed handleArrowClick={handleArrowClick} />}
       <main className="flex">
-        <Sidebar />
+        <Sidebar
+          showSideBar={showSideBar}
+          setShowSideBar={setShowSideBar}
+          handleArrowClick={handleArrowClick}
+        />
         <Routes>
           <Route path="/" element={<BoardPage />} />
           <Route path="/about" element={<AboutPage />} />
