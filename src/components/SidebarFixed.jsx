@@ -11,7 +11,7 @@ import {
 function SidebarFixed({ handleArrowClick }) {
   return (
     <>
-      <aside className="w-[240px] min-w-[240px] flex flex-col min-h-[100%] py-32 bg-slate-100 gap-2 px-6 fixed z-40 shadow-lg min-[600px]:hidden">
+      <aside className="w-[240px] min-w-[240px] flex flex-col min-h-[100%] py-32 bg-slate-100 gap-2 px-6 fixed z-40 shadow-lg md:hidden">
         <NavLink
           to="/"
           onClick={handleArrowClick}
@@ -38,14 +38,14 @@ function SidebarFixed({ handleArrowClick }) {
         </NavLink>
 
         <FontAwesomeIcon
-          className="min-[600px]:hidden fixed top-1/2 left-2 text-3xl text-slate-300 hover:text-slate-400 cursor-pointer"
+          className="md:hidden fixed top-1/2 left-[215px] text-3xl text-slate-300 hover:text-slate-400 cursor-pointer"
           icon={faChevronLeft}
           onClick={handleArrowClick}
         />
       </aside>
       <div
         onClick={handleArrowClick}
-        className="min-[600px]:hidden opacity-25 fixed inset-0 z-30 bg-black"
+        className="md:hidden opacity-25 fixed inset-0 z-30 bg-black"
       ></div>
     </>
   );

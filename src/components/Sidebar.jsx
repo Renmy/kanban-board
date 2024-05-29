@@ -8,7 +8,7 @@ import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 function Sidebar({ showSideBar, setShowSideBar, handleArrowClick }) {
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth <= 600) {
+      if (window.innerWidth <= 768) {
         setShowSideBar(false);
       } else {
         setShowSideBar(true);
@@ -23,7 +23,7 @@ function Sidebar({ showSideBar, setShowSideBar, handleArrowClick }) {
 
   return (
     <>
-      <aside className="w-[240px] min-w-[240px] flex flex-col min-h-[80vh] py-12 bg-slate-100 gap-2 px-6 max-[600px]:hidden">
+      <aside className="w-[240px] min-w-[240px] flex flex-col min-h-[80vh] py-12 bg-slate-100 gap-2 px-6 hidden md:block">
         <NavLink
           to="/"
           className={({ isActive }) =>
@@ -49,7 +49,7 @@ function Sidebar({ showSideBar, setShowSideBar, handleArrowClick }) {
       </aside>
 
       <FontAwesomeIcon
-        className="min-[600px]:hidden fixed top-1/2 left-2 text-3xl text-slate-300 hover:text-slate-400 cursor-pointer"
+        className="md:hidden fixed top-1/2 left-2 text-3xl text-slate-300 hover:text-slate-400 cursor-pointer"
         icon={faChevronRight}
         onClick={handleArrowClick}
       />
