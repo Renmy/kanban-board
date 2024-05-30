@@ -38,6 +38,8 @@ const Board = () => {
 
   const [currentTask, setCurrentTask] = useState(emptyTask);
 
+  const [searchQuery, setSearchQuery] = useState("");
+
   const handleArrowClick = () => {
     setShowSideBar(true);
   };
@@ -200,13 +202,39 @@ const Board = () => {
     localStorage.setItem("tasks", JSON.stringify(tasks));
   }, [tasks]);
 
+  useEffect(() => {
+    const searchArray = tasks.filter((prev) =>
+      prev.title.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+    if (searchQuery) {
+      setTodo(() => filterTasks(searchArray, "To Do"));
+      setInProgress(() => filterTasks(searchArray, "In Progress"));
+      setInReview(() => filterTasks(searchArray, "In Review"));
+      setDone(() => filterTasks(searchArray, "Done"));
+    } else {
+      setTodo(() => filterTasks(tasks, "To Do"));
+      setInProgress(() => filterTasks(tasks, "In Progress"));
+      setInReview(() => filterTasks(tasks, "In Review"));
+      setDone(() => filterTasks(tasks, "Done"));
+    }
+  }, [searchQuery]);
+
   return (
-    <div className="flex flex-col py-5 px-16 w-full">
-      <div className="flex items-center justify-between border-b-4 py-2 max-[675px]:flex-col">
+    <div className="flex flex-col py-5 px-8 md:px-16 w-full">
+      <div className="flex items-center justify-between border-b-4 py-2 flex-col lg:flex-row ">
         <h1 className="py-5 text-2xl pb-7 font-bold text-slate-700 max-[675px]:pb-4">
           Project Board
         </h1>
-        <div>
+
+        <div className="flex flex-col md:flex-row gap-4 ">
+          <input
+            onChange={(e) => setSearchQuery(e.target.value)}
+            value={searchQuery}
+            type="text"
+            name="search"
+            className="bg-slate-100 px-4 py-1 rounded-xl text-sm focus:border-purple-800/60 focus:outline-none focus:ring-0 focus:border-2 w-[300px]"
+            placeholder="Search..."
+          />
           <button
             onClick={() => showTaskDetails(emptyTask)}
             htmlFor="tw-modal"

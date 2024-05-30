@@ -14,12 +14,6 @@ function Navbar() {
         />
       </div>
       <div className="flex items-center gap-4">
-        <input
-          type="text"
-          name="search"
-          className="bg-slate-100 px-4 py-1 rounded-xl text-sm focus:border-purple-800/60 focus:outline-none focus:ring-0 focus:border-2 max-[530px]:w-[100px]"
-          placeholder="Search..."
-        />
         <img className="h-8" src={notifySvg} alt="kanban" />
         <img className="h-8" src={userSvg} alt="kanban" />
       </div>
