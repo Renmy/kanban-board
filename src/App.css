@@ -35,17 +35,17 @@ footer .footer-icon {
 }
 
 .todo {
-  background-color: rgba(0, 139, 163, 0.7);
+  background-color: #52AEBE;
 }
 
 .inprogress {
-  background-color: rgba(255, 85, 49, 0.7);
+  background-color: #FC886F;
 }
 
 .inreview {
-  background-color: rgba(173, 125, 27, 0.7);
+  background-color: #C5A464;
 }
 
 .done {
-  background-color: rgba(63, 177, 130, 0.7);
+  background-color: #77C9A8;
 }

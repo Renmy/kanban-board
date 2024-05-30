@@ -229,7 +229,7 @@ const Board = () => {
         />
       )}
       <DragDropContext onDragEnd={(result) => handleDrag(result)}>
-        <div className="flex justify-between gap-8 py-5">
+        <div className="flex justify-between gap-8 py-5 overflow-hidden">
           <Column
             title="To Do"
             tasks={todo}

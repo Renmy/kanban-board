@@ -16,11 +16,11 @@ const Column = ({
   };
 
   return (
-    <div className={`flex-1 `}>
+    <div className={`flex-1 box-border overflow-y-auto  `}>
       <div
         className={`${title
           .replace(/\s+/g, "")
-          .toLowerCase()} px-5 py-3 rounded-lg font-semibold`}
+          .toLowerCase()} px-5 py-3 rounded-lg font-semibold sticky top-0 z-10 `}
       >
         <h1 className="text-2xl text-white  text-center">{title}</h1>
         <h3 className="text-xs text-slate-100 text-center w-full">
@@ -32,7 +32,7 @@ const Column = ({
           <div
             {...droppableProvided.droppableProps}
             ref={droppableProvided.innerRef}
-            className="py-5 flex flex-col gap-2"
+            className="py-5 flex flex-col gap-2 "
           >
             {!tasks.length ? (
               <h3 className="text-sm text-slate-700 text-center">
