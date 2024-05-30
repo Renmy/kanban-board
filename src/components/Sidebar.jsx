@@ -26,12 +26,11 @@ function Sidebar({ showSideBar, setShowSideBar, handleArrowClick }) {
       <aside className="w-[240px] min-w-[240px] flex flex-col min-h-[80vh] py-12 bg-slate-100 gap-2 px-6 hidden md:block">
         <NavLink
           to="/"
-          className={({ isActive }) => {
-            console.log(isActive);
-            return isActive ? "block bg-slate-200 rounded-lg" : "";
-          }}
+          className={({ isActive }) =>
+            isActive ? "block bg-slate-200 rounded-lg" : ""
+          }
         >
-          <div className="flex gap-2 items-center hover:bg-slate-200 p-3 rounded-lg">
+          <div className="flex gap-2 items-center hover:bg-slate-200 p-3 rounded-lg mb-2">
             <img src={boardSvg} alt="board-icon" />
             <p>Board</p>
           </div>
